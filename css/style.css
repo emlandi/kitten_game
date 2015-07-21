@@ -1,5 +1,7 @@
 body{
-  background-color: blue;
+  width: 90%;
+  margin: 0 auto;
+  background-color: #cccccc;
   font-family: sans-serif;
+  text-align: center;
 }
-
