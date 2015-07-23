@@ -42,7 +42,7 @@ $('#pic1').click(function(){
   $('#pic2').attr("class", "");
   cats[left].votes++;
   console.log(cats[left].votes);
-  myChart.segments[0].value += 1;
+  myChart.segments[0].value += 1; //This needs to be based on cats[left].votes++, not just clicking on the left side.
   myChart.update();
 });
 
@@ -52,7 +52,7 @@ $('#pic2').click(function(){
   $('#pic1').attr("class", "");
   cats[right].votes++;
   console.log(cats[right].votes);
-  myChart.segments[1].value += 1;
+  myChart.segments[1].value += 1; //This needs to be based on cats[right].votes++, not just clicking on the left right.
   myChart.update();
 });
 
