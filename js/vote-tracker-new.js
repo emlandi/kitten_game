@@ -1,3 +1,5 @@
+$(document).ready(function(){
+
 var photo = function (path, number) {
   this.path = path;
   this.number = number;
@@ -28,7 +30,7 @@ display();
 function newDisplay(){
   left = randomNum(0, 13);
   right = randomNum(0,13);
-  if (left == right) {
+  while (left == right) {
     right = randomNum(0, 13);
   }
 console.log(left, right);
@@ -40,6 +42,8 @@ $('#pic1').click(function(){
   $('#pic2').attr("class", "");
   cats[left].votes++;
   console.log(cats[left].votes);
+  myChart.segments[0].value += 1;
+  myChart.update();
 });
 
 $('#pic2').click(function(){
@@ -48,33 +52,41 @@ $('#pic2').click(function(){
   $('#pic1').attr("class", "");
   cats[right].votes++;
   console.log(cats[right].votes);
+  myChart.segments[1].value += 1;
+  myChart.update();
 });
 
 $('#reroll').click(function(){
-  $('#pic1').attr("src", "");
-  $('#pic2').attr("src", "");
+  $('#pic1').attr("src", "").attr("class", "");
+  $('#pic2').attr("src", "").attr("class", "");
   newDisplay();
   display();
 });
 
-// Get context with jQuery - using jQuery's .get() method.
-var ctx = $("#myChart").get(0).getContext("2d");
-// This will get the first returned node in the jQuery collection.
-var myNewChart = new Chart(ctx);
-// And for a doughnut chart
-var myDoughnutChart = new Chart(ctx[1]).Doughnut(data,options);
+var pieData = [
+  {
+    value: 1,
+    color:"#878BB6"
+  },
+  {
+    value : 1,
+    color : "#4ACAB4"
+  },
+];
 
-var data = [
-    {
-        value: cats[left].votes,
-        color:"#F7464A",
-        highlight: "#FF5A5E",
-        label: "Red"
-    },
-    {
-        value: cats[right].votes,
-        color: "#46BFBD",
-        highlight: "#5AD3D1",
-        label: "Green"
-    },
-]
+var pieOptions = {
+  segmentShowStroke : false,
+  animateScale : true
+}
+
+var canvas = document.getElementById("myChart").getContext("2d");
+var myChart = new Chart(canvas).Pie(pieData,pieOptions);
+
+});
+
+
+
+
+
+
+
