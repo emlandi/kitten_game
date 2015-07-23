@@ -8,4 +8,5 @@
 -add jquery
 -add chart **the chart does not tally the votes correctly**
 
-
+7/23:
+-added local storage aspect
