@@ -1,10 +1,8 @@
-//image constructor
 var Image = function(path) {
   this.path = path;
   this.votes = 0;
 }
 
-//instances of image
 var cat0 = new Image ('images/0.jpg');
 var cat1 = new Image ('images/1.jpg');
 var cat2 = new Image ('images/2.jpg');
@@ -24,11 +22,14 @@ var catArray = [cat0, cat1, cat2, cat3, cat4, cat5, cat6, cat7, cat8, cat9, cat1
 
 var Tracker = function() {
   this.catArray = catArray;
+  this.left = document.getElementById('left');
+  this.right = document.getElementById('right');
   //console.log(catArray);
 }
 
-Tracker.prototype.randomNumber = function() {
-  this.random = parseInt(Math.floor(Math.random() * (this.catArray.length)));
+Tracker.prototype.randomNumber = function () {
+  this.random = parseInt(Math.floor(Math.random() * this.catArray.length));
+  //console.log("random number generated is " + this.random);
   return this.random;
 }
 
@@ -52,30 +53,32 @@ Tracker.prototype.images = function() {
 }
 
 Tracker.prototype.display = function() {
-  var left = document.getElementById('left');
-  var right = document.getElementById('right');
+  // var left = document.getElementById('left');
+  // var right = document.getElementById('right');
   var imgs = this.images();
 
-  left.src = imgs[0];
-  right.src = imgs[1];
+  this.left.src = imgs[0];
+  this.right.src = imgs[1];
 
-  this.leftVote = document.getElementById('left');
-  this.leftVote.addEventListener('click', function() {
+  console.log(this.left.src, this.right.src, this.leftImageRandom, this.rightImageRandom);
+
+  this.left.addEventListener('click', function() {
+    console.log("this is the index number of the left image: " + imgs[2]);
     catArray[imgs[2]].votes += 1;
+    console.log("this is the vote count of the image at index " + imgs[2] + ": " + catArray[imgs[2]].votes);
   }, false);
 
-  this.rightVote = document.getElementById('right');
-  this.rightVote.addEventListener('click', function() {
+  this.right.addEventListener('click', function() {
+    console.log("this is the index number of the right image: " + imgs[3]);
     catArray[imgs[3]].votes += 1;
+    console.log("this is the vote count of the image at index " + imgs[3] + ": " + catArray[imgs[3]].votes);
+  }, false);
+
+  var nextRound = document.getElementById('button');
+  nextRound.addEventListener('click', function() {
+    render.display();
   }, false);
 }
 
 var render = new Tracker()
 render.display();
-
-var nextRound = document.getElementById('button');
-nextRound.addEventListener('click', function() {
-  render.display();
-}, false);
-
-
