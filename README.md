@@ -10,3 +10,4 @@
 
 7/23:
 -added local storage aspect
+-added AJAX and deleted pics from local file

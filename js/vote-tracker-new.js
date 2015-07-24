@@ -1,5 +1,24 @@
 $(document).ready(function(){
 
+var pics;
+
+$.ajax({
+  url: "https://api.imgur.com/3/album/DDoWy.json",
+  method: "GET",
+  headers: {
+   "Authorization": "Client-ID 393d12fc38d1599"
+  }
+})
+
+.done(function(res) {
+  pics = res.data.images;
+  console.log("Pictures have loaded.");
+
+var cats = [];
+var left = undefined;
+var right = undefined;
+
+//checks for local storage
 if(!localStorage.getItem("key")){
   populateStorage();
   console.log("populateStorage");
@@ -8,12 +27,12 @@ if(!localStorage.getItem("key")){
   retrieveStorage();
   console.log("retrieveStorage");
 }
-});
 
 function populateStorage() {
   localStorage.setItem("key", JSON.stringify(cats));
 };
 
+//if local storage exists, that info is retrieved
 function retrieveStorage() {
   JSON.parse(localStorage.getItem("key"));
 };
@@ -24,13 +43,9 @@ var photo = function (path, number) {
   this.votes = 0;
 };
 
-var cats = [];
-var left = undefined;
-var right = undefined;
-
 //adds instances to cat array
-for (var i=0; i<=13; i++) {
-  cats.push(new photo("images/" + i + ".jpg", i));
+for (var i=0; i<14; i++) {
+  cats.push(new photo(pics[i].link));
 };
 //console.log(cats);
 
@@ -110,4 +125,11 @@ var pieOptions = {
 var canvas = document.getElementById("myChart").getContext("2d");
 var myChart = new Chart(canvas).Pie(pieData,pieOptions);
 
-// });
+})
+
+.fail(function(error) {
+  console.log("error");
+});
+
+});
+
