@@ -11,3 +11,6 @@
 7/23:
 -added local storage aspect
 -added AJAX and deleted pics from local file
+
+7/24:
+-added http server and 404 page

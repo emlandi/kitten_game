@@ -1,0 +1,22 @@
+{
+  "name": "kitten_game",
+  "version": "1.0.0",
+  "description": "7/22: -started game over -random cats appear -highlight (add border to) the winning photo, when clicked -increase the total votes for the winning photo by one, when clicked -add jquery -add chart **the chart does not tally the votes correctly**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emlandi/kitten_game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emlandi/kitten_game/issues"
+  },
+  "homepage": "https://github.com/emlandi/kitten_game#readme",
+  "dependencies": {
+    "express": "^4.13.1"
+  }
+}
